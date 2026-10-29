@@ -1,16 +1,71 @@
-.modal-backdrop { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 16px; background: rgba(8, 2, 20, 0.6); backdrop-filter: blur(6px); }
-.modal { width: min(520px, 100%); padding: 28px; border-radius: var(--radius-lg); background: var(--surface-strong); border: 1px solid var(--border-strong); box-shadow: var(--shadow); }
-.modal h3 { font-size: 1.4rem; margin-bottom: 18px; }
-.field { margin-bottom: 14px; }
-.field label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
-.input, .modal textarea, .modal select { width: 100%; padding: 12px 16px; border-radius: var(--radius-sm); font: inherit; color: var(--text); background: var(--field); border: 1px solid var(--border); outline: none; }
-.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(8, 2, 20, 0.6);
+  backdrop-filter: blur(6px);
+}
+.modal {
+  width: min(520px, 100%);
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-strong);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow);
+}
+.modal h3 {
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+}
+.field {
+  margin-bottom: 14px;
+}
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.input,
+.modal textarea,
+.modal select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font: inherit;
+  color: var(--text);
+  background: var(--field);
+  border: 1px solid var(--border);
+  outline: none;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
 
 .toast {
-  position: fixed; bottom: 28px; left: 50%; z-index: 60; transform: translate(-50%, 120px);
-  padding: 12px 22px; border-radius: 999px; font-weight: 600;
-  background: var(--surface-strong); border: 1px solid var(--border-strong); color: var(--text);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur); box-shadow: var(--shadow);
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  z-index: 60;
+  transform: translate(-50%, 120px);
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  background: var(--surface-strong);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  box-shadow: var(--shadow);
   transition: transform 300ms var(--ease);
 }
-.toast.show { transform: translate(-50%, 0); }
+.toast.show {
+  transform: translate(-50%, 0);
+}

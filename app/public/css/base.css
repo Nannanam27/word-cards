@@ -35,28 +35,66 @@
   --fast: 150ms;
   --med: 250ms;
 
-  --font: 'Plus Jakarta Sans', 'Noto Sans Thai', system-ui, sans-serif;
-  --font-thai: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+  --font: "Plus Jakarta Sans", "Noto Sans Thai", system-ui, sans-serif;
+  --font-thai: "Noto Sans Thai", "Plus Jakarta Sans", sans-serif;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  font-family: var(--font); font-size: 16px; line-height: 1.5;
-  color: var(--text); background: var(--bg); min-height: 100vh; overflow-x: hidden;
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.bg { position: fixed; inset: 0; z-index: -1; background: url('../assets/bg-galaxy.jpg') center / cover no-repeat, var(--bg); }
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    url("../assets/bg-galaxy.jpg") center / cover no-repeat,
+    var(--bg);
+}
 
-.hidden { display: none !important; }
-.thai { font-family: var(--font-thai); }
-.muted { color: var(--text-muted); }
+.hidden {
+  display: none !important;
+}
+.thai {
+  font-family: var(--font-thai);
+}
+.muted {
+  color: var(--text-muted);
+}
 
-.i { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.i {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
-:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
 
 .glass {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur); box-shadow: var(--shadow);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  box-shadow: var(--shadow);
 }
