@@ -1,0 +1,58 @@
+html { -webkit-text-size-adjust: 100%; }
+button, a, .set-row, .flip-card, .seg { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.touch-only { display: none !important; }
+.topbar { padding-top: max(14px, env(safe-area-inset-top)); }
+body.studying main { padding-top: max(32px, env(safe-area-inset-top)); }
+main { padding-bottom: max(96px, calc(env(safe-area-inset-bottom) + 40px)); }
+.toast { bottom: max(28px, calc(env(safe-area-inset-bottom) + 16px)); }
+
+@media (hover: none) and (pointer: coarse) {
+  .kb-only, .shortcuts { display: none !important; }
+  .touch-only { display: flex !important; }
+  .set-row:hover, .add-card-btn:hover, .opt:hover:not(:disabled), .judge-btn:hover { transform: none; box-shadow: none; }
+  .set-row:active { transform: scale(0.98); }
+  .judge-btn:active { transform: scale(0.94); }
+}
+
+.flip-card.dragging .flip-inner { transition: none; }
+.flip-card .swipe-badge {
+  position: absolute; top: 50%; z-index: 3; padding: 8px 16px; border-radius: 999px; font-weight: 800; pointer-events: none;
+  opacity: 0; transform: translateY(-50%); transition: opacity 120ms;
+}
+.swipe-badge.know { right: 18px; background: #16a34a; color: #fff; }
+.swipe-badge.learning { left: 18px; background: #ea580c; color: #fff; }
+.flip-card { position: relative; touch-action: pan-y; }
+
+@media (max-width: 760px) {
+  main { padding-left: 12px; padding-right: 12px; }
+  body.studying main { padding-top: max(12px, env(safe-area-inset-top)); }
+  h1 { font-size: 1.8rem; }
+  #view-decks .view-head { flex-wrap: nowrap; }
+  #view-decks .view-head .btn { padding: 0 16px; }
+  .field-input, .field-input.small, .pos-select, .search input, .set-field { font-size: 16px; }
+  .study-bar { gap: 8px; margin-bottom: 14px; }
+  .study-bar .actions { gap: 6px; flex-wrap: nowrap; }
+  .study-bar .icon-btn { width: 40px; height: 40px; }
+  #study-set-name { max-width: 52vw; font-size: 0.9rem; }
+  .flip-card { height: calc(100dvh - 330px); min-height: 280px; max-height: 520px; }
+  .tally { font-size: 0.85rem; }
+  .judge-btn { width: 96px; height: 60px; }
+  .study-foot { margin-top: 18px; gap: 14px; }
+  .quiz-box { padding: 28px 18px; min-height: 180px; }
+  .play-head .btn { padding: 0 14px; }
+}
+.shortcut-strip.touch-only b { margin: 0; }
+
+.bg { display: none; }
+html { background-color: #3d1a5d; }
+body {
+  min-height: 100vh; min-height: 100lvh;
+  background: #3d1a5d url('../assets/bg-galaxy.jpg') center top / cover no-repeat;
+}
+@media (hover: hover) and (pointer: fine) {
+  body { background-attachment: fixed; }
+}
+@media (hover: none) and (pointer: coarse) {
+  .topbar { position: relative; }
+}
+.toast:not(.show) { visibility: hidden; transition: transform 300ms var(--ease), visibility 0s 300ms; }

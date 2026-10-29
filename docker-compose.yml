@@ -1,0 +1,56 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: wordcards-db
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:          #cgroup limits for this container
+          cpus: "0.50"
+          memory: 256M
+    environment:
+      POSTGRES_USER: ${DB_USER:-words}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-words123}
+      POSTGRES_DB: ${DB_NAME:-wordcards}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-words} -d ${DB_NAME:-wordcards}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  web:
+    build: ./app
+    container_name: wordcards-web
+    restart: unless-stopped
+    init: true           #tiny init as PID 1: forwards signals, reaps zombies
+    deploy:
+      resources:
+        limits:          #cgroup limits for this container
+          cpus: "0.50"
+          memory: 128M
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-words}
+      DB_PASSWORD: ${DB_PASSWORD:-words123}
+      DB_NAME: ${DB_NAME:-wordcards}
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - backend
+
+volumes:
+  db_data:
+
+networks:
+  backend:
+    driver: bridge

@@ -1,0 +1,62 @@
+:root {
+  --bg: #12062a;
+  --surface: rgba(28, 14, 56, 0.62);
+  --surface-strong: rgba(36, 18, 70, 0.82);
+  --field: rgba(255, 255, 255, 0.07);
+  --field-hover: rgba(255, 255, 255, 0.11);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.22);
+
+  --text: #f5f3ff;
+  --text-muted: #c9c2e8;
+  --text-faint: #a99fd0;
+
+  --primary: #7c3aed;
+  --primary-hover: #6d28d9;
+  --primary-text: #ddd6fe;
+  --ring: #c4b5fd;
+
+  --success: #22c55e;
+  --success-soft: rgba(34, 197, 94, 0.16);
+  --success-text: #86efac;
+  --danger: #e11d48;
+  --danger-hover: #be123c;
+  --danger-soft: rgba(244, 63, 94, 0.16);
+  --danger-text: #fda4af;
+
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --blur: blur(16px);
+  --shadow: 0 12px 32px rgba(8, 2, 20, 0.45);
+  --shadow-hover: 0 18px 40px rgba(124, 58, 237, 0.35);
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --fast: 150ms;
+  --med: 250ms;
+
+  --font: 'Plus Jakarta Sans', 'Noto Sans Thai', system-ui, sans-serif;
+  --font-thai: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font); font-size: 16px; line-height: 1.5;
+  color: var(--text); background: var(--bg); min-height: 100vh; overflow-x: hidden;
+}
+
+.bg { position: fixed; inset: 0; z-index: -1; background: url('../assets/bg-galaxy.jpg') center / cover no-repeat, var(--bg); }
+
+.hidden { display: none !important; }
+.thai { font-family: var(--font-thai); }
+.muted { color: var(--text-muted); }
+
+.i { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.glass {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur); box-shadow: var(--shadow);
+}

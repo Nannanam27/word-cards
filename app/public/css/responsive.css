@@ -1,0 +1,33 @@
+@media (max-width: 760px) {
+  .topbar { padding: 12px 16px; gap: 12px; }
+  .breadcrumb, .logo-text { display: none; }
+  .top-search { width: auto; flex: 1; }
+  main { padding: 24px 16px 80px; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; }
+  .view-head { flex-wrap: wrap; }
+  .lib-bar .sort-label { display: none; }
+  .lib-bar .search { max-width: none; }
+  .mini-progress { display: none; }
+  .set-toolbar { flex-wrap: wrap; }
+  .tool-icons { flex: 1; justify-content: flex-end; }
+  .tool-icons .search { flex: 1; width: auto; }
+  .term-card { padding: 16px 18px 20px; }
+  .term-body { grid-template-columns: 1fr; gap: 12px; }
+  .flip-card { height: 52vh; min-height: 300px; }
+  .face { padding: 64px 22px 72px; }
+  .study-bar { grid-template-columns: auto 1fr auto; padding: 10px 12px; margin-bottom: 28px; }
+  body.studying main { padding-top: 16px; }
+  .study-mode { font-size: 0; gap: 0; }
+  .study-foot { grid-template-columns: 1fr; }
+  .study-foot .judge { grid-column: 1 / -1; justify-content: center; order: -1; }
+  .judge-btn { width: 72px; }
+  .quiz-options { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}
+
+.btn:disabled { opacity: 0.45; cursor: default; transform: none; box-shadow: none; }
+.study-done .actions { justify-content: center; }

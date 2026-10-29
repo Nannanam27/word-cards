@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="WordCards" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <title>Word Cards – English Vocabulary Flashcards</title>
+  <meta name="description" content="Study English vocabulary with flip flashcards. Create decks, add words and edit translations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/library.css" />
+  <link rel="stylesheet" href="css/editor.css" />
+  <link rel="stylesheet" href="css/study.css" />
+  <link rel="stylesheet" href="css/quiz.css" />
+  <link rel="stylesheet" href="css/overlays.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/panels.css" />
+  <link rel="stylesheet" href="css/mobile.css" />
+</head>
+<body>
+  <!-- SVG icon sprite (Lucide icons) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></symbol>
+    <symbol id="i-cards" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+    <symbol id="i-quiz" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+    <symbol id="i-redo" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M21.17 6.81a1 1 0 0 0-3.98-3.98L3.84 16.17a2 2 0 0 0-.5.83l-1.32 4.35a.5.5 0 0 0 .62.62l4.35-1.32a2 2 0 0 0 .83-.5z"/><path d="m15 5 4 4"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+  </svg>
+
+  <div class="bg"></div>
+
+  <header class="topbar">
+    <a href="#" class="logo" id="logo-home" aria-label="Word Cards home"><span class="logo-mark">W</span><span class="logo-text">Word<b>Cards</b></span></a>
+    <nav id="breadcrumb" class="breadcrumb" aria-label="Breadcrumb"></nav>
+    <label class="search top-search">
+      <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+      <input type="search" id="global-search" placeholder="Find a set…" autocomplete="off" aria-label="Find a set" />
+    </label>
+  </header>
+
+  <main id="app">
+    <!-- Library -->
+    <section id="view-decks" class="view">
+      <div class="view-head">
+        <h1>Your library</h1>
+        <button class="btn btn-primary" id="btn-new-deck"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg>New set</button>
+      </div>
+      <p class="subtitle" id="lib-stats"></p>
+
+      <div class="segmented glass" id="lib-tabs" role="tablist" aria-label="Library mode">
+        <button class="seg active" data-tab="flashcards" role="tab" aria-selected="true"><svg class="i" aria-hidden="true"><use href="#i-cards"/></svg>Flashcards</button>
+        <button class="seg" data-tab="quiz" role="tab" aria-selected="false"><svg class="i" aria-hidden="true"><use href="#i-quiz"/></svg>Quiz</button>
+      </div>
+
+      <div class="lib-bar">
+        <span class="sort-label">Recent first</span>
+        <label class="search">
+          <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+          <input type="search" id="lib-search" placeholder="Search flashcards" autocomplete="off" aria-label="Search flashcards" />
+        </label>
+      </div>
+      <div id="deck-grid" class="set-list"></div>
+    </section>
+
+    <!-- Set editor -->
+    <section id="view-deck" class="view hidden">
+      <div class="view-head">
+        <h2 id="deck-heading">Edit flashcard set</h2>
+        <div class="actions">
+          <button class="btn btn-ghost" id="btn-done">Done</button>
+          <button class="btn btn-primary" id="btn-study"><svg class="i" aria-hidden="true"><use href="#i-play"/></svg><span id="btn-study-label">Save and practice</span></button>
+        </div>
+      </div>
+      <p class="save-status" role="status"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span id="save-status">All changes saved</span></p>
+
+      <input class="set-field glass" id="deck-title" placeholder="Title" autocomplete="off" aria-label="Set title" />
+      <textarea class="set-field glass" id="deck-desc" placeholder="Add a description…" rows="1" aria-label="Set description"></textarea>
+
+      <div class="set-toolbar">
+        <div class="progress-wrap">
+          <div class="progress" role="progressbar" aria-label="Known cards"><div class="progress-bar" id="deck-progress"></div></div>
+          <span id="deck-progress-text"></span>
+        </div>
+        <div class="tool-icons">
+          <label class="search hidden" id="search-box">
+            <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+            <input type="search" id="search" placeholder="Filter cards…" aria-label="Filter cards" />
+          </label>
+          <button class="icon-btn" id="btn-search-toggle" aria-label="Search cards" title="Search cards"><svg class="i" aria-hidden="true"><use href="#i-search"/></svg></button>
+          <button class="btn btn-danger" id="btn-delete-deck" title="Delete set">DELETE</button>
+        </div>
+      </div>
+
+      <div id="card-list" class="card-list"></div>
+      <button class="add-card-btn glass" id="btn-add-card"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg>ADD CARD</button>
+    </section>
+
+    <!-- Study -->
+    <section id="view-study" class="view hidden study">
+      <header class="study-bar glass">
+        <div class="study-mode"><span class="mode-icon"><svg class="i" aria-hidden="true"><use href="#i-cards"/></svg></span>Flashcards</div>
+        <div class="study-title">
+          <span id="study-counter" class="counter" aria-live="polite"></span>
+          <span id="study-set-name"></span>
+        </div>
+        <div class="actions">
+          <button class="icon-btn" id="btn-swap" aria-label="Swap sides" title="Show definition first"><svg class="i" aria-hidden="true"><use href="#i-swap"/></svg></button>
+          <button class="icon-btn" id="btn-edit-set" aria-label="Edit set" title="Edit set"><svg class="i" aria-hidden="true"><use href="#i-pencil"/></svg></button>
+          <button class="icon-btn" id="btn-back-deck" aria-label="Back to library" title="Back to library"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></button>
+        </div>
+        <div class="study-line"><div id="study-progress"></div></div>
+      </header>
+
+      <div id="study-play" class="study-stage">
+        <div class="tally">
+          <span class="tally-learning"><b id="tally-learning">0</b>Still learning</span>
+          <span class="tally-know">Know<b id="tally-know">0</b></span>
+        </div>
+
+        <div class="flip-stage">
+          <div class="flip-card" id="flip-card" tabindex="0" role="button" aria-label="Flip card">
+            <span class="swipe-badge learning" id="swipe-learning">Still learning</span>
+            <span class="swipe-badge know" id="swipe-know">Know</span>
+            <div class="flip-inner">
+              <div class="face front">
+                <div class="face-top">
+                  <span class="known-chip"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Known</span>
+                </div>
+                <span class="pos" id="f-pos"></span>
+                <div class="big" id="f-main"></div>
+                <div class="shortcut-strip kb-only">Press <kbd>Space</kbd> or click on the card to flip</div>
+                <div class="shortcut-strip touch-only"><span><b>Tap</b> to flip · <b>Swipe →</b> know · <b>Swipe ←</b> still learning</span></div>
+              </div>
+              <div class="face back">
+                <div class="big thai" id="b-main"></div>
+                <p class="example" id="b-example"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="study-foot">
+          <div class="judge">
+            <button class="judge-btn learning" id="btn-learning" aria-label="Still learning (L)" title="Still learning (L)"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></button>
+            <button class="judge-btn know" id="btn-known" aria-label="Know (K)" title="Know (K)"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></button>
+          </div>
+          <div class="actions foot-right">
+            <button class="icon-btn ghost" id="btn-undo" aria-label="Undo last card" title="Undo (Backspace)"><svg class="i" aria-hidden="true"><use href="#i-undo"/></svg></button>
+            <button class="icon-btn" id="btn-shuffle" aria-label="Shuffle cards" title="Shuffle"><svg class="i" aria-hidden="true"><use href="#i-shuffle"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div id="study-done" class="study-done glass hidden">
+        <span class="pos">Round complete</span>
+        <h2>Nice work!</h2>
+        <div class="done-stats">
+          <div class="done-stat know"><b id="done-know">0</b><span>Know</span></div>
+          <div class="done-stat learning"><b id="done-learning">0</b><span>Still learning</span></div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-ghost" id="btn-study-restart"><svg class="i" aria-hidden="true"><use href="#i-redo"/></svg>Restart all</button>
+          <button class="btn btn-primary" id="btn-study-review">Review still learning</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz -->
+    <section id="view-quiz" class="view hidden play">
+      <div class="play-head">
+        <button class="btn btn-ghost" id="btn-quiz-back"><svg class="i" aria-hidden="true"><use href="#i-back"/></svg>Library</button>
+        <span id="quiz-counter" class="counter" aria-live="polite"></span>
+        <span id="quiz-score" class="counter"></span>
+      </div>
+      <div class="progress play-progress"><div class="progress-bar violet" id="quiz-progress"></div></div>
+
+      <div id="quiz-play">
+        <div class="quiz-box glass">
+          <span class="pos" id="q-pos"></span>
+          <div class="big" id="q-word"></div>
+          <span class="hint">Choose the correct meaning</span>
+        </div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="shortcuts"><span><kbd>1</kbd>–<kbd>4</kbd> pick an answer</span></div>
+      </div>
+
+      <div id="quiz-result" class="quiz-box glass hidden">
+        <span class="pos">Quiz complete</span>
+        <div class="result-score" id="quiz-final"></div>
+        <div class="result-pct" id="quiz-pct"></div>
+        <p class="muted" id="quiz-msg"></p>
+        <div class="actions">
+          <button class="btn btn-ghost" id="btn-quiz-done">Back to library</button>
+          <button class="btn btn-primary" id="btn-quiz-again"><svg class="i" aria-hidden="true"><use href="#i-redo"/></svg>Try again</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-backdrop hidden" id="modal">
+    <form class="modal" id="modal-form">
+      <h3 id="modal-title"></h3>
+      <div id="modal-fields"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="modal-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="modal-save">Save</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

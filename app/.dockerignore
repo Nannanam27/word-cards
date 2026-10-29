@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.git
+.env
+Dockerfile
+.dockerignore
+# old background images that the CSS no longer uses
+public/assets/bg.jpg
+public/assets/bg-marble.jpg
