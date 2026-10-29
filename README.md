@@ -63,9 +63,8 @@ Words/
 │           ├── responsive.css
 │           ├── panels.css    # light panels over the galaxy
 │           └── mobile.css    # touch, swipe, iPhone safe areas
-├── db/
-│   └── init.sql              # tables + sample data (runs on first start)
-└── docs/                     # report outline and video script
+└── db/
+    └── init.sql              # tables + sample data (runs on first start)
 ```
 
 ## Install
